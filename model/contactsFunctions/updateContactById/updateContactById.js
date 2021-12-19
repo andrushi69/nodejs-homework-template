@@ -1,4 +1,4 @@
-const listContacts = require("./listContacts");
+const listContacts = require("../listContacts");
 const fs = require("fs/promises");
 const path = require("path");
 
@@ -9,7 +9,7 @@ const updateContactById = async (id, data) => {
     return null;
   }
   contacts[contactId] = {...contacts[contactId], ...data};
-  await fs.writeFile(path.join(__dirname, "../../db/contacts.json"), JSON.stringify(contacts, null, 2))
+  await fs.writeFile(path.join(__dirname, "../../../db/contacts.json"), JSON.stringify(contacts, null, 2))
   return contacts[contactId];
 }
 module.exports = updateContactById

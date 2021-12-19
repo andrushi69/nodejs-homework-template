@@ -1,4 +1,4 @@
-const listContacts = require("./listContacts")
+const listContacts = require("./ListContacts")
 const getContactById = require("./getContactById")
 const addContact = require("./addContact")
 const deleteContact = require("./deleteContact")
