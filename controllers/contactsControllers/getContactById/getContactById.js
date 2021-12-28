@@ -1,8 +1,8 @@
-const contactsOperations = require("../../../model/contactsFunctions");
+const contactsOperations = require("../../../repository/contactsFunctions");
 
 const getContactById = async (req, res) => {
   const {contactId} = req.params;
-  const [contact] = await contactsOperations.getContactById(contactId);
+  const contact = await contactsOperations.getContactById(contactId);
   if (!contact) {
     return res.status(400).json({message: `Contact with id ${contactId} not found`})
   }
