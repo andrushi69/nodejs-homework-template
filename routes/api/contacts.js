@@ -7,8 +7,9 @@ const {schemaValidation} = require('../../schemas/joiValidationForContacts');
 
 router.get('/', controllerWrapper(ctrl.listContacts))
   .get('/:contactId', controllerWrapper(ctrl.getContactById))
-  .post('/', validation(schemaValidation), controllerWrapper(ctrl.addContact))
+  .post('/', validation(schemaValidation.schema), controllerWrapper(ctrl.addContact))
   .delete('/:contactId', controllerWrapper(ctrl.deleteContact))
-  .put('/:contactId', validation(schemaValidation), controllerWrapper(ctrl.updateContactsById))
+  .put('/:contactId', validation(schemaValidation.schema), controllerWrapper(ctrl.updateContactsById))
+  .patch('/:contactId/favorite', validation(schemaValidation.favoriteSchema), controllerWrapper(ctrl.favorite))
 
 module.exports = {contactsRouter: router}
