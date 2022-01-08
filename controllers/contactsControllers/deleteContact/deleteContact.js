@@ -1,7 +1,8 @@
 const contactsOperations = require("../../../repository/contactsFunctions");
 const deleteContact = async (req, res) => {
   const {contactId} = req.params;
-  const contact = await contactsOperations.deleteContact(contactId)
+  const {id: userId} = req.user
+  const contact = await contactsOperations.deleteContact(userId, contactId)
   if (!contact) {
     return res.status(404).json({message: `Contact with id ${contactId} not found`})
   }
