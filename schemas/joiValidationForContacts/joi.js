@@ -11,4 +11,12 @@ const favoriteSchema = Joi.object({
   favorite: Joi.boolean().required()
 })
 
-module.exports = {schema, favoriteSchema}
+const userSchema = Joi.object({
+  email: Joi.string().email({minDomainSegments: 2, tlds: {allow: ['com', 'ru', 'ua', 'net']}}).required(),
+  password: Joi.string().min(5).max(20).required()
+})
+const subscription = Joi.object({
+  subscription: Joi.string().required().valid('starter', 'pro', 'business'),
+})
+
+module.exports = {schema, favoriteSchema, userSchema, subscription}
