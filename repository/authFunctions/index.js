@@ -13,6 +13,9 @@ const create = async (body) => {
 const updateToken = async (id, token) => {
   return User.updateOne({_id: id}, {token});
 }
+const updateAvatar = async (id, avatar, cloudAvatar = null) => {
+  return User.updateOne({_id: id}, {avatar, cloudAvatar});
+}
 const getUserByToken = async (token) => {
   return User.findOne({token})
 }
@@ -20,4 +23,4 @@ const updateSubscription = async (subscription) => {
   return User.findOneAndUpdate({subscription})
 }
 
-module.exports = {findById, findByEmail, create, updateToken, getUserByToken, updateSubscription}
+module.exports = {findById, findByEmail, create, updateToken, getUserByToken, updateSubscription, updateAvatar}

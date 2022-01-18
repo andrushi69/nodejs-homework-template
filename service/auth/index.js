@@ -2,6 +2,7 @@ const User = require("../../repository/authFunctions")
 const jwt = require("jsonwebtoken")
 const SECRET_KEY = process.env.JWT_SECRET_KEY
 
+
 class AuthService {
   async isUserExist(email) {
     const user = await User.findByEmail(email)
@@ -9,8 +10,8 @@ class AuthService {
   }
 
   async create(body) {
-    const {id, name, email} = await User.create(body)
-    return {id, name, email}
+    const {id, name, email, avatar} = await User.create(body)
+    return {id, name, email, avatar}
   }
 
   async getUser(email, password) {
