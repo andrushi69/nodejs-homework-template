@@ -1,6 +1,8 @@
 const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
+const customError = require("./libs/customError")
+const statusCode = require("./libs/statusCodes")
 
 const {contactsRouter} = require('./routes/api/contacts/contacts')
 const {authRouter} = require('./routes/api/auth/auth')
@@ -20,11 +22,11 @@ app.use('/api/auth', authRouter)
 app.use('/api/users', usersRouter)
 
 app.use((req, res) => {
-  res.status(404).json({ message: 'Not found' })
+  res.status(statusCode.NotFound).json({message: "Not found"})
 })
 
 app.use((err, req, res, next) => {
-  res.status(500).json({ message: err.message })
+  res.status(statusCode.InternalServerError).json({message: "Internal Server Error"})
 })
 
 module.exports = app
