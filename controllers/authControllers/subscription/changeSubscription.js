@@ -1,11 +1,13 @@
 const authOperations = require("../../../repository/authFunctions");
+const customError = require("../../../libs/customError");
+const statusCode = require("../../../libs/statusCodes");
 
 const changeSubscription = async (req, res) => {
   const {subscription} = req.body
   const sub = await authOperations.updateSubscription(subscription)
-  if (!sub) {
-    return res.status(404).json({message: "missing field subscription"})
+  if (sub) {
+    return res.status(statusCode.Ok).json({status: "field successfully changed"})
   }
-  res.status(200).json({status: "field successfully changed"})
+  throw new customError(statusCode.NotFound, "Missing field subscription")
 };
 module.exports = changeSubscription

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require("bcryptjs")
 const gravatar = require("gravatar")
 const {Schema, model} = mongoose;
+const {randomUUID} = require("crypto")
 
 
 const userSchema = new Schema({
@@ -40,7 +41,15 @@ const userSchema = new Schema({
     token: {
       type: String,
       default: null
-    }
+    },
+    isVerifyToken: {
+      type: Boolean,
+      default: false
+    },
+    verifyToken: {
+      type: String,
+      default: randomUUID()
+    },
   }, {
     versionKey: false, timestamps: false,
     toJSON: {
